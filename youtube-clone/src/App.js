@@ -2,16 +2,19 @@ import "./App.css";
 import Body from "./components/Body";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import { useSelector } from "react-redux";
 
 function App() {
+  const menuShow = useSelector((store) => store.menubar.showSidebar);
+
   return (
-    <div>
+    <>
       <Header />
       <div className="flex">
-        <Sidebar />
+        {menuShow && <Sidebar />}
         <Body />
       </div>
-    </div>
+    </>
   );
 }
 
