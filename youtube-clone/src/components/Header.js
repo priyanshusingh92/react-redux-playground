@@ -13,7 +13,7 @@ const dispatch =    useDispatch();
   return (
     <div className="grid grid-flow-col shadow-xl">
       <div className="flex grid-cols-1">
-        <img className="ml-2 h-8 pt-3" onClick={toggleMenu} alt={"hamburger"} src={"https://cdn0.iconfinder.com/data/icons/tigadua-mobile-ui-vol-1/32/menu_hamburger_button_ui-512.png"}/>
+        <img className="ml-2 h-8 pt-3 cursor-pointer" onClick={toggleMenu} alt={"hamburger"} src={"https://cdn0.iconfinder.com/data/icons/tigadua-mobile-ui-vol-1/32/menu_hamburger_button_ui-512.png"}/>
         <img className="h-12 pl-2" alt={"logo"} src={"https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" }/>
       </div>
       <div className="flex justify-stretch grid-cols-10 pt-3">

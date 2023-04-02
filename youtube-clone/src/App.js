@@ -1,18 +1,28 @@
 import "./App.css";
 import Body from "./components/Body";
 import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import { useSelector } from "react-redux";
+import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import VideoContainer from "./components/VideoContainer";
+import WatchPage from "./components/WatchPage";
 
 function App() {
-  const menuShow = useSelector((store) => store.menubar.showSidebar);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Body />,
+      children: [
+        { path: "/", element: <VideoContainer /> },
+        { path: "/watch", element: <WatchPage /> },
+      ],
+    },
+  ]);
 
   return (
     <>
       <Header />
       <div className="flex">
-        {menuShow && <Sidebar />}
-        <Body />
+        <RouterProvider router={router}></RouterProvider>
       </div>
     </>
   );

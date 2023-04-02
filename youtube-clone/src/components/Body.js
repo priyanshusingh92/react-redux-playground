@@ -1,14 +1,19 @@
-import React from 'react'
-import ButtonList from './ButtonList'
-import VideoContainer from './VideoContainer'
-
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import { useSelector } from "react-redux";
 const Body = () => {
+  const menuShow = useSelector((store) => store.menubar.showSidebar);
+
   return (
-    <div className='flex-col'>
-        <ButtonList/>
-        <VideoContainer/>
+    <div className="flex">
+
+      {menuShow && <Sidebar />}
+
+      <Outlet></Outlet>
+    
     </div>
-  )
-}
+  );
+};
 
 export default Body;

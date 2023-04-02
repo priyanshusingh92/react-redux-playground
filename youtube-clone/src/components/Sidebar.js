@@ -1,13 +1,14 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 
 const Sidebar = () => {
 
 
   return (
     <>
-    <div className='p-5 shadow-lg w-48'>
+    <div className='p-5 shadow-lg basis-1/5'>
      <ul>
-            <li>Home</li>
+            <li> <Link to="/">Home</Link></li>
             <li>Shorts</li>
             <li>Subscription</li>
             
