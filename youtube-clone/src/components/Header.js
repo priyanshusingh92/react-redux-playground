@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../assets/search-icon.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../utils/menuSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import { cacheResults } from "../utils/searchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState([]);
+  const storedResults = useSelector((store) => store.search);
 
   const toggleMenu = () => {
     dispatch(toggleSidebar());
@@ -15,7 +18,11 @@ const Header = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      getSearchSuggestions();
+      if (storedResults[searchQuery]) {
+        setSearchSuggestions(storedResults[searchQuery]);
+      } else {
+        getSearchSuggestions();
+      }
     }, 200);
     return () => {
       clearTimeout(timer);
@@ -25,7 +32,7 @@ const Header = () => {
   const getSearchSuggestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const response = await data.json();
-    console.log(response[1]);
+    dispatch(cacheResults({ [searchQuery]: response[1] }));
     setSearchSuggestions(response[1]);
   };
 
@@ -48,21 +55,44 @@ const Header = () => {
           }
         />
       </div>
-      <div className="flex justify-stretch grid-cols-10 pt-3">
-        <input
-          placeholder="Search"
-          className="px-5 py-2 border-solid border-2 border-slate-100 h-7 col-span-8 w-full rounded-l-full"
-          type="text"
-          onChange={(e) => setSearchQuery(e.target.value)}
-          value={searchQuery}
-        />
-        <button
-          className="h-7 rounded-r-full px-3 bg-gray-100 col-span-2"
-          type="button"
-        >
-          <img alt={"search"} className="h-5 p-1" src={Logo} />
-        </button>
+      <div className="flex justify-stretch pt-3 flex-col">
+        <div className="flex justify-stretch">
+          <input
+            placeholder="Search"
+            className="px-5 py-2 border-solid border-2 border-slate-100 h-7 col-span-8 w-full rounded-l-full"
+            type="text"
+            onChange={(e) => setSearchQuery(e.target.value)}
+            value={searchQuery}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
+          />
+          <button
+            className="h-7 rounded-r-full px-3 bg-gray-100 col-span-2"
+            type="button"
+          >
+            <img alt={"search"} className="h-5 p-1" src={Logo} />
+          </button>
+        </div>
+        {showSuggestions && searchSuggestions.length > 0 && (
+          <div className="bg-white w-full flex justify-stretch">
+            <ul className="border-gray-100 py-2 rounded-lg shadow-lg fixed w-[33rem] bg-white">
+              {searchSuggestions.map((suggestion, index) => (
+                <div className="flex flex-row cursor-default hover:bg-gray-100">
+                  <img
+                    alt={"search"}
+                    className="h-3 mt-2 ml-[1.5rem]"
+                    src={Logo}
+                  />
+                  <li key={index} className="pl-5">
+                    {suggestion}
+                  </li>
+                </div>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
+
       <div className="flex justify-end grid-cols-1">
         <img
           className="pr-10 h-10 pt-3 col-span-1"

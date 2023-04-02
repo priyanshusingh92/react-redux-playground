@@ -33,7 +33,7 @@ const VideoContainer = () => {
       {loading &&
         Array(50)
           .fill(null)
-          .map((item) => <Shimmer />)}
+          .map((item,index) => <Shimmer key={index} />)}
     </div>
   );
 };
