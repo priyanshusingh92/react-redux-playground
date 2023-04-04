@@ -89,7 +89,7 @@ const Header = () => {
             className="h-7 rounded-r-full px-3 bg-gray-100 col-span-2"
             type="button"
           >
-            <img alt={"search"} className="h-5 p-1" src={Logo} />
+            <img alt={"search"} onClick={()=> getVideosBySearchQuery(searchQuery)} className="h-5 p-1" src={Logo} />
           </button>
         </div>
         {showSuggestions && searchSuggestions.length > 0 && (
