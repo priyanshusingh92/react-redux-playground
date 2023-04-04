@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../assets/search-icon.png";
 import { useDispatch, useSelector } from "react-redux";
-import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import { YOUTUBE_SEARCH_API, YOUTUBE_SEARCH_BY_KEYWORD_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
 import { toggleSidebar } from "../utils/sidebarSlice";
+import { cacheVideos } from "../utils/videosSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,25 @@ const Header = () => {
     dispatch(toggleSidebar());
   };
 
-  useEffect(() => {
+  const getVideosBySearchQuery= async(query="")=>{
+    let url = YOUTUBE_SEARCH_BY_KEYWORD_API.replace("SEARCH_QUERY",query);
+    const data = await fetch(url);
+    const json = await data.json();
+    dispatch(cacheVideos(json.items));
+    setShowSuggestions(false);
+  }
 
+  const suggestionClickHandler = (e) => {
+    setSearchQuery(e.nativeEvent.target.innerHTML);
+    getVideosBySearchQuery(e.nativeEvent.target.innerHTML);
+  };
+
+  useEffect(()=>{
+    getVideosBySearchQuery();
+  },[])
+
+
+  useEffect(() => {
     const getSearchSuggestions = async () => {
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
       const response = await data.json();
@@ -35,8 +53,7 @@ const Header = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery,storedResults,dispatch]);
-
+  }, [searchQuery, storedResults, dispatch]);
 
   return (
     <div className="grid grid-flow-col shadow-xl">
@@ -66,7 +83,7 @@ const Header = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             value={searchQuery}
             onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
+            //onBlur={() => setShowSuggestions(false)}
           />
           <button
             className="h-7 rounded-r-full px-3 bg-gray-100 col-span-2"
@@ -78,14 +95,22 @@ const Header = () => {
         {showSuggestions && searchSuggestions.length > 0 && (
           <div className="bg-white w-full flex justify-stretch">
             <ul className="border-gray-100 py-2 rounded-lg shadow-lg fixed w-[33rem] bg-white">
-              {searchSuggestions.map((suggestion, index) => (
-                <div className="flex flex-row cursor-default hover:bg-gray-100">
+              {searchSuggestions.map((suggestion) => (
+                <div
+                  key={Math.random()}
+                  className="flex flex-row cursor-default hover:bg-gray-100"
+                >
                   <img
+                    key={Math.random()}
                     alt={"search"}
                     className="h-3 mt-2 ml-[1.5rem]"
                     src={Logo}
                   />
-                  <li key={index} className="pl-5">
+                  <li
+                    onClick={(e) => suggestionClickHandler(e)}
+                    key={Math.random()}
+                    className="pl-5"
+                  >
                     {suggestion}
                   </li>
                 </div>
