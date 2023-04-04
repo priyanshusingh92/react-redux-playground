@@ -1,2 +1,3 @@
-# react-redux-playground
-Redux setup for reading and subscribing store values
+# Youtube clone made using redux , Tailwindcss , reactjs
+<img width="919" alt="image" src="https://user-images.githubusercontent.com/36508048/229698045-4397c83c-8ba1-4c41-a68e-f849bd5510de.png">
+
