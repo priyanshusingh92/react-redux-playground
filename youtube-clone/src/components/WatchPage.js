@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { closeSidebar } from "../utils/menuSlice";
+import { closeSidebar } from "../utils/sidebarSlice";
 import { useSearchParams } from "react-router-dom";
 import CommentList from "./CommentList";
 import { COMMENT_DATA } from "../utils/constants";

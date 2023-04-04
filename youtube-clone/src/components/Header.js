@@ -3,7 +3,7 @@ import Logo from "../assets/search-icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
-import { toggleSidebar } from "../utils/menuSlice";
+import { toggleSidebar } from "../utils/sidebarSlice";
 
 const Header = () => {
   const dispatch = useDispatch();

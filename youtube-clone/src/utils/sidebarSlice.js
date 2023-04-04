@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const menuSlice  = createSlice({
+const sidebarSlice  = createSlice({
     name: "menu",
     initialState: {
         showSidebar: true
@@ -14,5 +14,5 @@ const menuSlice  = createSlice({
         }
     }
 })
-export const {toggleSidebar,closeSidebar} = menuSlice.actions;
-export default menuSlice.reducer;
+export const {toggleSidebar,closeSidebar} = sidebarSlice.actions;
+export default sidebarSlice.reducer;
