@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Logo from "../assets/search-icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { YOUTUBE_SEARCH_API, YOUTUBE_SEARCH_BY_KEYWORD_API } from "../utils/constants";
@@ -17,13 +17,13 @@ const Header = () => {
     dispatch(toggleSidebar());
   };
 
-  const getVideosBySearchQuery= async(query="")=>{
+  const getVideosBySearchQuery= useCallback(async(query="")=>{
     let url = YOUTUBE_SEARCH_BY_KEYWORD_API.replace("SEARCH_QUERY",query);
     const data = await fetch(url);
     const json = await data.json();
     dispatch(cacheVideos(json.items));
     setShowSuggestions(false);
-  }
+  },[dispatch])
 
   const suggestionClickHandler = (e) => {
     setSearchQuery(e.nativeEvent.target.innerHTML);
@@ -32,7 +32,7 @@ const Header = () => {
 
   useEffect(()=>{
     getVideosBySearchQuery();
-  },[])
+  },[getVideosBySearchQuery])
 
 
   useEffect(() => {
