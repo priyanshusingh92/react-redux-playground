@@ -5,6 +5,7 @@ Features -
 - Redux toolkit for state management
 - React router for routing
 - Nested comments engine
+- Shimmer UI integration
 - Live :- https://main--relaxed-lamington-b42b6b.netlify.app/
 
 <img width="919" alt="image" src="https://user-images.githubusercontent.com/36508048/229698045-4397c83c-8ba1-4c41-a68e-f849bd5510de.png">
