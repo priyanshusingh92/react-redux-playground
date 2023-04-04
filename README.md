@@ -1,4 +1,4 @@
-# Youtube clone made using redux , Tailwindcss , reactjs
+# Youtube Clone - Made using redux , Tailwindcss , reactjs
 Features -
 - Live youtube api results
 - Optimised search with live search , debouncing and caching of search results
