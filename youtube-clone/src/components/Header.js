@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../assets/search-icon.png";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "../utils/menuSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
+import { toggleSidebar } from "../utils/menuSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
