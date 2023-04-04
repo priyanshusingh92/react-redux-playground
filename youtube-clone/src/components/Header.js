@@ -17,6 +17,14 @@ const Header = () => {
   };
 
   useEffect(() => {
+
+    const getSearchSuggestions = async () => {
+      const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+      const response = await data.json();
+      dispatch(cacheResults({ [searchQuery]: response[1] }));
+      setSearchSuggestions(response[1]);
+    };
+
     const timer = setTimeout(() => {
       if (storedResults[searchQuery]) {
         setSearchSuggestions(storedResults[searchQuery]);
@@ -27,14 +35,8 @@ const Header = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery]);
+  }, [searchQuery,storedResults,dispatch]);
 
-  const getSearchSuggestions = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-    const response = await data.json();
-    dispatch(cacheResults({ [searchQuery]: response[1] }));
-    setSearchSuggestions(response[1]);
-  };
 
   return (
     <div className="grid grid-flow-col shadow-xl">
