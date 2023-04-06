@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Logo from "../assets/search-icon.png";
 import { useDispatch, useSelector } from "react-redux";
-import { DEFAULT_VIDEOS, YOUTUBE_SEARCH_API, YOUTUBE_SEARCH_BY_KEYWORD_API } from "../utils/constants";
+import { TRANSFORMED_DEFAULT_VIDEOS, YOUTUBE_SEARCH_API, YOUTUBE_SEARCH_BY_KEYWORD_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
 import { toggleSidebar } from "../utils/sidebarSlice";
 import { cacheVideos } from "../utils/videosSlice";
@@ -21,7 +21,7 @@ const Header = () => {
     let url = YOUTUBE_SEARCH_BY_KEYWORD_API.replace("SEARCH_QUERY",query);
     const data = await fetch(url);
     if(data.status !== 200){
-      dispatch(cacheVideos(DEFAULT_VIDEOS.items));
+      dispatch(cacheVideos(TRANSFORMED_DEFAULT_VIDEOS.items));
       setShowSuggestions(false);
     } else{
       const json = await data.json();
