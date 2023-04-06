@@ -6,14 +6,7 @@ import Shimmer from "./Shimmer";
 import { useSelector } from "react-redux";
 
 const VideoContainer = () => {
-  const videos = useSelector((state) => state.videos.videos).map((video) => {
-    if (typeof(video.id) !== "string") {
-      video.id1 = video.id.videoId;
-    } else{
-      video.id1 = video.id;
-    }
-    return video ;
-  });
+  const videos = useSelector((state) => state.videos.videos);
 
   return (
     <div className="flex flex-wrap">
@@ -21,7 +14,7 @@ const VideoContainer = () => {
       {videos &&
         videos.length > 0 &&
         videos.map((video) => (
-          <Link key={Math.random()} to={"watch?v=" + video.id1}>
+          <Link key={Math.random()} to={"watch?v=" + video.id.videoId}>
             <VideoCard key={Math.random()} info={video} />
           </Link>
         ))}
