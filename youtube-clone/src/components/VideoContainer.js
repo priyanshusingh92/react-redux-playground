@@ -8,7 +8,9 @@ import { useSelector } from "react-redux";
 const VideoContainer = () => {
   const videos = useSelector((state) => state.videos.videos).map((video) => {
     if (typeof(video.id) !== "string") {
-      video.id = video.id.videoId;
+      video.id1 = video.id.videoId;
+    } else{
+      video.id1 = video.id;
     }
     return video ;
   });
@@ -19,7 +21,7 @@ const VideoContainer = () => {
       {videos &&
         videos.length > 0 &&
         videos.map((video) => (
-          <Link key={Math.random()} to={"watch?v=" + video.id}>
+          <Link key={Math.random()} to={"watch?v=" + video.id1}>
             <VideoCard key={Math.random()} info={video} />
           </Link>
         ))}
