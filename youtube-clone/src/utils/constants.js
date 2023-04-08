@@ -4250,5 +4250,3 @@ export const TRANSFORMED_DEFAULT_VIDEOS = DEFAULT_VIDEOS.items.map((video) => {
   video.id = { videoId: video.id };
   return video;
 });
-
-console.log(TRANSFORMED_DEFAULT_VIDEOS)

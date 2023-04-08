@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSidebar } from "../utils/sidebarSlice";
 import { useSearchParams } from "react-router-dom";
@@ -12,6 +12,7 @@ const WatchPage = () => {
   const [searchParams] = useSearchParams();
   const messages = useSelector((store) => store.chat.messages);
   const dispatch = useDispatch();
+  const [msg, setMsg] = useState("")
 
   useEffect(() => {
     dispatch(closeSidebar());
@@ -31,6 +32,12 @@ const WatchPage = () => {
       clearInterval(interval);
     };
   }, [dispatch]);
+
+  const sendBtnHandler=(e)=>{
+    e.preventDefault();
+    dispatch(setComments({name:"Priyanshu", comment:msg}))
+    setMsg("")
+  }
 
   return (
     <div className="flex w-full">
@@ -52,7 +59,7 @@ const WatchPage = () => {
       </div>
       <div className="rounded-lg mr-5 flex-row w-full h-[400px] border-solid border-black border-2">
         <div className="rounded-lg w-full mb-2 pl-2 h-[30px] relative bg-slate-300 shadow-lg"> Live Chat</div>
-        <div className="h-[360px] overflow-y-scroll">
+        <div className="h-[350px] overflow-y-scroll">
           {messages.map((message, i) => (
             <LiveComment
               key={i}
@@ -61,6 +68,10 @@ const WatchPage = () => {
             />
           ))}
         </div>
+        <form className="flex w-full" onSubmit={(e)=>sendBtnHandler(e)}>
+          <input value={msg} onChange={(e) => setMsg(e.target.value)} className="rounded-l-lg w-full p-1 border-solid border-black border-2" type="text"/>
+          <button type="button" onClick={(e)=>sendBtnHandler(e)} className="border-solid border-black border-2 bg-green-100 p-2 rounded-r-lg">Send</button>
+        </form>
       </div>
     </div>
   );
