@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeSidebar } from "../utils/sidebarSlice";
 import { useSearchParams } from "react-router-dom";
 import CommentList from "./CommentList";
-import { COMMENT_DATA, NAME_GENERATOR_URL } from "../utils/constants";
+import { COMMENT_DATA } from "../utils/constants";
 import LiveComment from "./LiveComment";
 import { setComments } from "../utils/chatSlice";
 import { generateRandomText, getRandomName } from "./Helper";
@@ -17,15 +17,9 @@ const WatchPage = () => {
     dispatch(closeSidebar());
   }, [dispatch]);
 
-  const getName = async () => {
-    const data = await fetch(NAME_GENERATOR_URL);
-    const json = await data.json();
-    return getRandomName(json.data);
-  };
-
   useEffect(() => {
-    const interval = setInterval(async() => {
-      const name = await getName();
+    const interval = setInterval(() => {
+      const name = getRandomName();
       dispatch(
         setComments({
           name,
