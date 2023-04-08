@@ -1,7 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Logo from "../assets/search-icon.png";
 import { useDispatch, useSelector } from "react-redux";
-import { TRANSFORMED_DEFAULT_VIDEOS, YOUTUBE_SEARCH_API, YOUTUBE_SEARCH_BY_KEYWORD_API } from "../utils/constants";
+import {
+  TRANSFORMED_DEFAULT_VIDEOS,
+  YOUTUBE_SEARCH_API,
+  YOUTUBE_SEARCH_BY_KEYWORD_API,
+} from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
 import { toggleSidebar } from "../utils/sidebarSlice";
 import { cacheVideos } from "../utils/videosSlice";
@@ -17,29 +21,31 @@ const Header = () => {
     dispatch(toggleSidebar());
   };
 
-  const getVideosBySearchQuery= useCallback(async(query="")=>{
-    let url = YOUTUBE_SEARCH_BY_KEYWORD_API.replace("SEARCH_QUERY",query);
-    const data = await fetch(url);
-    if(data.status !== 200){
-      dispatch(cacheVideos(TRANSFORMED_DEFAULT_VIDEOS.items));
-      setShowSuggestions(false);
-    } else{
-      const json = await data.json();
-      dispatch(cacheVideos(json.items));
-      setShowSuggestions(false);
-    }
+  const getVideosBySearchQuery = useCallback(
+    async (query = "") => {
 
-  },[dispatch])
+      let url = YOUTUBE_SEARCH_BY_KEYWORD_API.replace("SEARCH_QUERY", query);
+      const data = await fetch(url);
+      if (data.status !== 200) {
+        dispatch(cacheVideos(TRANSFORMED_DEFAULT_VIDEOS.items));
+        setShowSuggestions(false);
+      } else {
+        const json = await data.json();
+        dispatch(cacheVideos(json.items));
+        setShowSuggestions(false);
+      }
+    },
+    [dispatch]
+  );
 
   const suggestionClickHandler = (e) => {
     setSearchQuery(e.nativeEvent.target.innerHTML);
     getVideosBySearchQuery(e.nativeEvent.target.innerHTML);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getVideosBySearchQuery();
-  },[getVideosBySearchQuery])
-
+  }, [getVideosBySearchQuery]);
 
   useEffect(() => {
     const getSearchSuggestions = async () => {
@@ -95,7 +101,12 @@ const Header = () => {
             className="h-7 rounded-r-full px-3 bg-gray-100 col-span-2"
             type="button"
           >
-            <img alt={"search"} onClick={()=> getVideosBySearchQuery(searchQuery)} className="h-5 p-1" src={Logo} />
+            <img
+              alt={"search"}
+              onClick={() => getVideosBySearchQuery(searchQuery)}
+              className="h-5 p-1"
+              src={Logo}
+            />
           </button>
         </div>
         {showSuggestions && searchSuggestions.length > 0 && (
