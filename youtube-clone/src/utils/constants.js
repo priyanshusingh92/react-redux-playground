@@ -10,36 +10,36 @@ export const YOUTUBE_SEARCH_BY_KEYWORD_API =
 export const COMMENT_DATA = [
   {
     name: "Priyanshu Singh",
-    comment: "This is my comment",
+    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
     replies: [
-      { name: "Priyanshu Singh", comment: "This is my comment", replies: [] },
-      { name: "Priyanshu Singh", comment: "This is my comment", replies: [] },
+      { name: "Priyanshu Singh", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", replies: [] },
+      { name: "Priyanshu Singh", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", replies: [] },
       {
         name: "Priyanshu Singh",
-        comment: "This is my comment",
+        comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
         replies: [
           {
             name: "Priyanshu Singh",
-            comment: "This is my comment",
+            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
             replies: [
               {
                 name: "Priyanshu Singh",
-                comment: "This is my comment",
+                comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
                 replies: [],
               },
               {
                 name: "Priyanshu Singh",
-                comment: "This is my comment",
+                comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
                 replies: [
                   {
                     name: "Priyanshu Singh",
                     comment:
-                      "This is my comment. This is my comment This is my comment This is my comment This is my comment This is my comment This is my comment This is my comment This is my comment This is my comment",
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit,. Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
                     replies: [],
                   },
                   {
                     name: "Priyanshu Singh",
-                    comment: "This is my comment",
+                    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
                     replies: [],
                   },
                 ],
@@ -48,7 +48,7 @@ export const COMMENT_DATA = [
           },
           {
             name: "Priyanshu Singh",
-            comment: "This is my comment",
+            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
             replies: [],
           },
         ],
@@ -57,9 +57,9 @@ export const COMMENT_DATA = [
   },
   {
     name: "Priyanshu Singh",
-    comment: "This is my comment",
+    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
     replies: [
-      { name: "Priyanshu Singh", comment: "This is my comment", replies: [] },
+      { name: "Priyanshu Singh", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", replies: [] },
     ],
   },
 ];
