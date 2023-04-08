@@ -26,7 +26,7 @@ const WatchPage = () => {
           comment: generateRandomText(20),
         })
       );
-    }, 1500);
+    }, 800);
     return () => {
       clearInterval(interval);
     };
@@ -50,9 +50,9 @@ const WatchPage = () => {
           <CommentList comments={COMMENT_DATA} />
         </div>
       </div>
-      <div className="rounded-lg mr-5 flex-row w-full h-[400px] border-solid border-black border-2 overflow-y-scroll">
+      <div className="rounded-lg mr-5 flex-row w-full h-[400px] border-solid border-black border-2">
         <div className="rounded-lg w-full mb-2 pl-2 h-[30px] relative bg-slate-300 shadow-lg"> Live Chat</div>
-        <div>
+        <div className="h-[360px] overflow-y-scroll">
           {messages.map((message, i) => (
             <LiveComment
               key={i}

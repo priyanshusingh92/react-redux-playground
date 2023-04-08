@@ -27,7 +27,7 @@ const Header = () => {
       let url = YOUTUBE_SEARCH_BY_KEYWORD_API.replace("SEARCH_QUERY", query);
       const data = await fetch(url);
       if (data.status !== 200) {
-        dispatch(cacheVideos(TRANSFORMED_DEFAULT_VIDEOS.items));
+        dispatch(cacheVideos(TRANSFORMED_DEFAULT_VIDEOS));
         setShowSuggestions(false);
       } else {
         const json = await data.json();
