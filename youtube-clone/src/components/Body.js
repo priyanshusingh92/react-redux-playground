@@ -6,7 +6,7 @@ const Body = () => {
   const menuShow = useSelector((store) => store.menubar.showSidebar);
 
   return (
-    <div className="flex">
+    <div className="flex w-full">
 
       {menuShow && <Sidebar />}
 

@@ -1,6 +1,6 @@
 const GOOGLE_API_KEY = "AIzaSyDhWFwpUxQecoQ3RHT1jjVwgxj7V2O44iA";
 export const YOUTUBE_SEARCH_API =
-  "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+  "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&q=";
 export const VIDEOS_LIST_URL =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key=" +
   GOOGLE_API_KEY;
@@ -4243,6 +4243,8 @@ export const COMMENT_DATA = [
     resultsPerPage: 50,
   },
 };
+
+export const NAME_GENERATOR_URL = "https://www.randomlists.com/data/names-male.json";
 
 export const TRANSFORMED_DEFAULT_VIDEOS = DEFAULT_VIDEOS.items.map((video) => {
   video.id = { videoId: video.id };
